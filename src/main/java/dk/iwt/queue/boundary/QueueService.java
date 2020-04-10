@@ -46,5 +46,9 @@ public class QueueService {
     public QueueElement peak() {
         return this.defaultQueue.peak();
     }
+    
+    public void reset(){
+        this.defaultQueue.reset();
+    }
 
 }

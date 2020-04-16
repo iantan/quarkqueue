@@ -6,7 +6,7 @@ import java.util.Queue;
 
 public class QuarkQueue {
 
-    private UUID id;
+    private final UUID id;
     private String name;
     private Integer counter;
     private Queue<QueueElement> queue;
@@ -34,10 +34,14 @@ public class QuarkQueue {
         return queue.size();
     }
     
+    public QueueElement getPeak() {
+        return this.queue.peek();
+    }
+
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public QueueElement add() {
         QueueElement element = new QueueElement(++counter);
         this.queue.add(element);
@@ -46,10 +50,6 @@ public class QuarkQueue {
 
     public QueueElement poll() {
         return this.queue.poll();
-    }
-
-    public QueueElement peak() {
-        return this.queue.peek();
     }
     
     public void reset() {

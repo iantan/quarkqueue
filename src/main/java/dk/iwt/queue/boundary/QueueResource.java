@@ -3,7 +3,6 @@ package dk.iwt.queue.boundary;
 import dk.iwt.queue.control.QuarkQueue;
 import dk.iwt.queue.control.QueueElement;
 import javax.inject.Inject;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -35,7 +34,7 @@ public class QueueResource {
         return queueService.peak();
     }
 
-    @DELETE
+    @POST
     @Path("/poll")
     public QueueElement poll(){
         return queueService.poll();

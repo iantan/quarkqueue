@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Employee Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="init()">
+        <div id='summary'>
+            <span>
+                <label>Size of queue: </label>
+                <span id="size"></span>
+            </span>
+        </div>
+        <div>
+            <input type="button" value="poll" onclick="poll();"/>
+            <div id="customer-section">
+                <span>
+                    <label>Serving number: </label>
+                    <span id="number"></span>
+                </span>
+            </div>
+        </div>
+
+        <script src="queue-service.js"></script>
+    </body>
+</html>

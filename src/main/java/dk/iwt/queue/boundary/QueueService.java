@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.enterprise.context.ApplicationScoped;
 import java.util.UUID;
 import javax.annotation.PostConstruct;
+import javax.inject.Inject;
 
 @ApplicationScoped
 public class QueueService {

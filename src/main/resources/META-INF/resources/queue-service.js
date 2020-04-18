@@ -1,42 +1,26 @@
 "use strict";
 
-function init() {
+function onLoad(user) {
     var request = new XMLHttpRequest();
     request.open('GET', '/queue', true);
     request.onload = function () {
         var resp = JSON.parse(request.responseText);
-        document.getElementById("size").innerHTML = resp.size;
-        var next = document.getElementById("next");
-        if (next) {
-            console.info(resp.peak);
-            document.getElementById("next").innerHTML = resp.peak ? resp.peak.number - 1 : 0;
-        }
+        document.getElementById("lastestNumber").innerHTML = resp.peak ? resp.peak.number - 1 : 0;
+        document.getElementById("qSize").innerHTML = resp.size;
     };
-
     request.send();
-}
-
-function init2(user) {
-    console.log('init2 - ' + user);
-    init();
     connect(user);
 }
 
-function add() {
+function addToQueue() {
     var request = new XMLHttpRequest();
     request.open('PUT', '/queue/add', true);
     request.onload = function () {
         var resp = JSON.parse(request.responseText);
         document.getElementById("customer-section").hidden = false;
-        var number = document.getElementById("number");
-        if (number) {
-            document.getElementById("number").innerHTML = resp.number;
-        }
-          
-        sendMessage();
-        init();
+        document.getElementById("customer-number").innerHTML = resp.number;
+        broadcast();
     };
-
     request.send();
 }
 
@@ -45,41 +29,31 @@ function poll() {
     request.open('POST', '/queue/poll', true);
     request.onload = function () {
         var resp = JSON.parse(request.responseText);
-        document.getElementById("number").innerHTML = resp.number;
-
-        init();
+        document.getElementById("customer-number").innerHTML = resp.number;
+        broadcast();
     };
-
     request.send();
 }
 
-var connected = false;
 var socket;
+var connected = false;
 function connect(user) {
     if (!connected) {
-        var name = "board";
         socket = new WebSocket("ws://" + location.host + "/queue-socket/" + user);
         socket.onopen = function () {
             connected = true;
             console.log("Connected to the web socket");
-//            $("#send").attr("disabled", false);
-//            $("#connect").attr("disabled", true);
-//            $("#name").attr("disabled", true);
-//            $("#msg").focus();
         };
         socket.onmessage = function (m) {
-            console.log("Got message: " + m.data);
-            document.getElementById("size").innerHTML = JSON.parse(m.data).size;
-//            $("#chat").append(m.data + "\n");
-//            scrollToBottom();
+            var resp = JSON.parse(m.data);
+            document.getElementById("lastestNumber").innerHTML = resp.lastestCustomerNumber;
+            document.getElementById("qSize").innerHTML = resp.size;
         };
     }
 }
-;
 
-function sendMessage() {
+function broadcast() {
     if (connected) {
-        socket.send("dummy");
+        socket.send("refresh all");
     }
 }
-;

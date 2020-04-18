@@ -4,24 +4,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body onload="init2('customer')">
-        <div id='summary'>
-            <span>
-                <label>Size of queue: </label>
-                <span id="size"></span>
-            </span>
-            <br/>
-            <span>
+    <body onload="onLoad('customer')">
+        <div id="summarySection">
+            <div>
                 <label>Now serving: </label>
-                <span id="next"></span>
-            </span>
+                <span id="lastestNumber"></span>
+            </div>
+            <div>
+                <label>Size of queue: </label>
+                <span id="qSize"></span>
+            </div>
         </div>
+        <div></div>
         <div>
-            <input type="button" value="Get number" onclick="add()"/>
+            <input type="button" value="Get on queue" onclick="addToQueue()"/>
+
             <div id="customer-section" hidden>
                 <span>
                     <label>You are number: </label>
-                    <span id="number"></span>
+                    <span id="customer-number"></span>
                 </span>
             </div>
         </div>

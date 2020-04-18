@@ -4,17 +4,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body onload="init2('board')">
-        <div id='summary'>
-            <span>
-                <label>Size of queue: </label>
-                <span id="size"></span>
-            </span>
-            <br/>
-            <span>
+    <body onload="onLoad('board')">
+        <div id="summarySection">
+            <div>
                 <label>Now serving: </label>
-                <span id="next"></span>
-            </span>
+                <span id="lastestNumber"></span>
+            </div>
+            <div>
+                <label>Size of queue: </label>
+                <span id="qSize"></span>
+            </div>
         </div>
 
         <script src="queue-service.js"></script>

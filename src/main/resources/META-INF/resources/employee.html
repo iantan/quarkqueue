@@ -4,19 +4,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body onload="init()">
-        <div id='summary'>
-            <span>
+    <body onload="onLoad('employee')">
+        <div id="summarySection">
+            <div>
+                <label>Now serving: </label>
+                <span id="lastestNumber"></span>
+            </div>
+            <div>
                 <label>Size of queue: </label>
-                <span id="size"></span>
-            </span>
+                <span id="qSize"></span>
+            </div>
         </div>
         <div>
-            <input type="button" value="poll" onclick="poll();"/>
-            <div id="customer-section">
+            <input type="button" value="Next customer" onclick="poll();"/>
+            <div id="employee-section">
                 <span>
-                    <label>Serving number: </label>
-                    <span id="number"></span>
+                    <label>You are now serving: </label>
+                    <span id="customer-number"></span>
                 </span>
             </div>
         </div>

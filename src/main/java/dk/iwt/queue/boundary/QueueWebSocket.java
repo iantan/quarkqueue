@@ -62,6 +62,7 @@ public class QueueWebSocket {
     private JsonObject parse(QuarkQueue queue){
         JsonObjectBuilder builder = Json.createObjectBuilder();
         return builder.add("count", queue.getCounter())
+                .add("lastestCustomerNumber", queue.getPeak().getNumber() - 1)
                 .add("size", queue.getSize())
                 .build();
     }
